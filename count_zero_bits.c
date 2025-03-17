@@ -32,6 +32,7 @@ int count_binary_zeros(int number) {
                 break;
             }
         }
+        //
     }
 
     for (int i = 0; i < 32; ++i) {
