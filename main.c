@@ -1,8 +1,5 @@
 #include <stdio.h>
 
 void palindrome();
+void count_bits();
 
-int main() {
-    palindrome("Hey");
-    return 0;
-}

@@ -1,45 +1,28 @@
 #include <stdio.h>
-#include <intrin.h>
-#include "math.h"
 
-int count_binary_zeros(int number) {
-    int zeros_count = 0;
-    int binary[32];
+unsigned int count_bits(unsigned int num) {
+    unsigned int count = 0;
+    unsigned int total_bits = 32;
 
-    int abs_number = abs(number);
-    for (int i = 31; i >= 0; --i) {
-        int power_of_2 = pow(2, i);
-        if (abs_number >= power_of_2) {
-            binary[31 - i] = 1;
-            abs_number -= power_of_2;
-        } else {
-            binary[31 - i] = 0;
+    for (unsigned int i = 0; i < total_bits; i++) {
+        if (((num >> i) & 1) == 0) {
+            count++;
         }
     }
 
-    if (number < 0) {
-        for (int i = 0; i < 32; ++i) {
-            binary[i] = 1 - binary[i];
-        }
+    return count;
+}
 
-        int carry = 1;
+int main() {
+    unsigned int num;
 
-        for (int i = 31; i >= 0; --i) {
-            int sum = binary[i] + carry;
-            binary[i] = sum % 2;
-            carry = sum / 2;
-            if (carry == 0) {
-                break;
-            }
-        }
+    printf("Please enter an unsigned integer number (in decimal): ");
+    scanf("%u", &num);
 
-    }
+    printf("The number you entered: %u\n", num);
 
-    for (int i = 0; i < 32; ++i) {
-        if (binary[i] == 0) {
-            zeros_count++;
-        }
-    }
+    unsigned int zero_bits = count_bits(num);
+    printf("Number of zero bits: %u\n", zero_bits);
 
-    return zeros_count;
+    return 0;
 }
