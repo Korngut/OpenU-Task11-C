@@ -32,7 +32,7 @@ int count_binary_zeros(int number) {
                 break;
             }
         }
-        //
+
     }
 
     for (int i = 0; i < 32; ++i) {
@@ -42,9 +42,4 @@ int count_binary_zeros(int number) {
     }
 
     return zeros_count;
-}
-
-int main() {
-    count_binary_zeros(-256);
-    return 0;
 }

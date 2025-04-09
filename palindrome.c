@@ -1,40 +1,37 @@
 #include <stdio.h>
-#include <intrin.h>
+#include <string.h>
 
+void palindrome() {
+    char input[81];
+    int left, right;
 
-int palindrome(char s[]) {
-    int length = strlen(s);
-    int left = 0;
-    int right = length - 1;
+    printf("Please enter a string to check if it's a palindrome:\n");
+    if (fgets(input, sizeof(input), stdin) == NULL) {
+        printf("Error reading input.\n");
+        return;
+    }
+
+    size_t len = strlen(input);
+    if (len > 0 && input[len - 1] == '\n')
+        input[len - 1] = '\0';
+
+    printf("The entered string is: \"%s\"\n", input);
+
+    left = 0;
+    right = strlen(input) - 1;
 
     while (left < right) {
-
-        while (left < right && (s[left] == ' ' || s[left] == '\t')) {
+        while (left < right && (input[left] == ' ' || input[left] == '\t'))
             left++;
-        }
-
-        while (left < right && (s[right] == ' ' || s[right] == '\t')) {
+        while (left < right && (input[right] == ' ' || input[right] == '\t'))
             right--;
+        if (input[left] != input[right]) {
+            printf("NO\n");
+            return;
         }
-
-        if (s[left] != s[right]) {
-            return 0;
-        }
-
         left++;
         right--;
     }
 
-    return 1;
+    printf("YES\n");
 }
-
-int main() {
-    char String[81];
-    printf("Inset input: \n");
-
-    fgets(String, 81, stdin);
-
-    printf("%d", palindrome(String));;
-    return 0;
-}
-
